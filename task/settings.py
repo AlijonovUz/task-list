@@ -27,6 +27,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = [
+    "https://task-list.wwiw.qzz.io",
+    "https://www.task-list.wwiw.qzz.io",
+    "http://task-list.wwiw.qzz.io",
+    "http://www.task-list.wwiw.qzz.io",
+]
+
+# SESSION settings
+SESSION_COOKIE_AGE = 3600
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Application definition
 

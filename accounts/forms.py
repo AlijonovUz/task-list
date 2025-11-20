@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -35,3 +37,16 @@ class LoginForm(AuthenticationForm):
         username.widget.attrs.update(
             {'class': "form-control rounded-md", 'placeholder': "Foydalanuvchi nomini kiriting"})
         password.widget.attrs.update({'class': "form-control rounded-md", 'placeholder': "Parol kiriting"})
+
+    
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+
+        if username:
+            try:
+                user = User.objects.get(username__iexact=username.lower())
+                return user.username
+            except User.DoesNotExist:
+                return username
+        
+        return username
