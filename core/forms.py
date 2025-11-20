@@ -9,7 +9,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'description']
         labels = {
-            'title': "Vazifa Nomi",
+            'title': "Vazifa nomi",
             'description': "Tafsilotlar"
         }
         widgets = {
@@ -25,6 +25,14 @@ class TaskForm(forms.ModelForm):
 
         if not title:
             raise ValidationError("Iltimos, ushbu maydonni to'ldiring.")
+
+        task = Task.objects.filter(title=title, completed=False)
+        if self.instance.pk:
+            task = task.exclude(pk=self.instance.pk)
+
+        if task.exists():
+            raise ValidationError("Bunday sarlavhada faol vazifa mavjud.")
+
         return title
 
     def clean_description(self):

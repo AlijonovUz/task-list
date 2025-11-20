@@ -1,0 +1,80 @@
+body {
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+  min-height: 100vh;
+}
+
+/* Task Cards Hover Effects */
+.task-card,
+.task-detail-card,
+.task-form-card,
+.task-delete-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.task-card:hover,
+.task-detail-card:hover,
+.task-form-card:hover,
+.task-delete-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Badge Styles */
+.badge-gradient-warning {
+  background: linear-gradient(90deg, #facc15, #fbbf24);
+  color: #78350f;
+}
+
+.badge-gradient-success {
+  background: linear-gradient(90deg, #86efac, #4ade80);
+  color: #14532d;
+}
+
+/* Task Icons */
+.task-icons a {
+  transition: color 0.2s, transform 0.2s;
+}
+
+.task-icons a:hover {
+  transform: scale(1.2);
+}
+
+/* Pagination */
+.page-link:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Buttons */
+.btn-custom {
+  transition: transform 0.2s;
+}
+
+.btn-custom:hover {
+  transform: scale(1.05);
+}
+
+/* Input Focus */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Rounded Inputs & Buttons */
+.rounded-md {
+  border-radius: 0.5rem !important;
+}
+
+/* Cards (Login/Register) */
+.card-login,
+.card-register {
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+}
+
+.field-error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: red;
+}

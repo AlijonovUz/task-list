@@ -16,8 +16,14 @@ class HomeListView(ListView):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             tasks = Task.objects.select_related('user').filter(user=self.request.user)
+
+            status = self.request.GET.get('status')
+            if status == 'completed':
+                tasks = tasks.filter(completed=True)
+            elif status == 'pending':
+                tasks = tasks.filter(completed=False)
         else:
-            tasks = []
+            tasks = Task.objects.none()
         return tasks
 
 

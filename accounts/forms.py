@@ -1,7 +1,4 @@
-from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 
 
 class RegisterForm(UserCreationForm):
@@ -20,6 +17,9 @@ class RegisterForm(UserCreationForm):
             {'class': "form-control rounded-md", 'placeholder': "Foydalanuvchi nomini kiriting"})
         password1.widget.attrs.update({'class': "form-control rounded-md", 'placeholder': "Parol kiriting"})
         password2.widget.attrs.update({'class': "form-control rounded-md", 'placeholder': "Parolni qayta kiriting"})
+
+        username.error_messages[
+            'unique'] = "Bu foydalanuvchi nomi allaqachon mavjud."
 
 
 class LoginForm(AuthenticationForm):
