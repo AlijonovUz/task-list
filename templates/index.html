@@ -33,9 +33,17 @@
             <li class="d-flex justify-content-between align-items-center mb-3 p-3 rounded-3 bg-light border task-card">
                 <div class="d-flex align-items-center gap-2">
 
-                    <span class="badge {{ task.completed|yesno:'badge-gradient-success,badge-gradient-warning' }}">
-                        {{ task.completed|yesno:'Bajarildi,Kutilmoqda' }}
-                    </span>
+                    {% if task.completed %}
+                        {% if task.is_late %}
+                            <span class="badge badge-gradient-late">Bajarildi</span>
+                        {% else %}
+                            <span class="badge badge-gradient-success">Bajarildi</span>
+                        {% endif %}
+                    {% elif task.is_overdue %}
+                        <span class="badge badge-gradient-danger">Muddati o'tgan</span>
+                    {% else %}
+                        <span class="badge badge-gradient-warning" id="task-{{ task.id }}-status" data-deadline="{{ task.deadline|date:'Y-m-d H:i:s' }}">Kutilmoqda</span>
+                    {% endif %}
 
                     <span class="{% if task.completed %} text-muted text-decoration-line-through {% endif %}">{{ task.title }}</span>
                 </div>

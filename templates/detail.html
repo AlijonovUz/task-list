@@ -17,12 +17,28 @@ d-flex align-items-center justify-content-center min-vh-100 py-5
         <h3 class="mb-2">{{ task.title }}</h3>
         <p class="text-muted mb-3">{{ task.description }}</p>
 
+        <!-- Deadline --->
+        <div class="mb-2 d-flex align-items-center gap-2">
+            <span class="fw-medium text-muted">Muddati:</span>
+            <span class="text-dark">
+                {{ task.deadline|date:"d - F, Y" }} yil {{ task.deadline|date:"H:i" }}
+            </span>
+        </div>
+
         <!-- Statuslar -->
         <div class="mb-2 d-flex align-items-center gap-2">
             <span class="fw-medium text-muted">Holati:</span>
-            <span class="badge {{ task.completed|yesno:'badge-gradient-success,badge-gradient-warning' }}">
-                {{ task.completed|yesno:'Bajarildi,Kutilmoqda' }}
-            </span>
+            {% if task.completed %}
+                {% if task.is_late %}
+                    <span class="badge badge-gradient-late">Bajarildi (Kechikkan)</span>
+                {% else %}
+                    <span class="badge badge-gradient-success">Bajarildi</span>
+                {% endif %}
+            {% elif task.is_overdue %}
+                <span class="badge badge-gradient-danger">Muddati o'tgan</span>
+            {% else %}
+                <span class="badge badge-gradient-warning" id="task-{{ task.id }}-status" data-deadline="{{ task.deadline|date:'Y-m-d H:i:s' }}">Kutilmoqda</span>
+            {% endif %}
         </div>
     </div>
 

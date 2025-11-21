@@ -35,11 +35,6 @@ CSRF_TRUSTED_ORIGINS = [
     "http://www.task-list.wwiw.qzz.io",
 ]
 
-# SESSION settings
-SESSION_COOKIE_AGE = 3600
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_SAVE_EVERY_REQUEST = True
-
 # Application definition
 
 INSTALLED_APPS = [

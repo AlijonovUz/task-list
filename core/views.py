@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import RedirectView
 
@@ -59,6 +60,10 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'delete.html'
     success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        messages.success(self.request, "Vazifa o'chirildi.")
+        return super().form_valid(form)
+
 
 class CompletedRedirectView(LoginRequiredMixin, RedirectView):
     pattern_name = 'detail'
@@ -66,6 +71,8 @@ class CompletedRedirectView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         task = get_object_or_404(Task, pk=kwargs['pk'])
         if not task.completed:
+            messages.success(self.request, "Vazifa bajarildi.")
             task.completed = True
+            task.completed_at = timezone.now()
             task.save()
         return super().get_redirect_url(*args, **kwargs)
