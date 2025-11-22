@@ -53,3 +53,36 @@ d-flex align-items-center justify-content-center py-5
     </form>
 </div>
 {% endblock %}
+
+{% block script %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordInputs = document.querySelectorAll('input[type="password"]');
+
+    passwordInputs.forEach(input => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "password-wrapper";
+
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+
+        const icon = document.createElement("i");
+        icon.className = "fas fa-eye";
+        wrapper.appendChild(icon);
+
+        icon.addEventListener("mousedown", () => {
+            input.type = "text";
+            icon.classList.replace("fa-eye", "fa-eye-slash");
+        });
+
+        const hide = () => {
+            input.type = "password";
+            icon.classList.replace("fa-eye-slash", "fa-eye");
+        };
+
+        icon.addEventListener("mouseup", hide);
+        icon.addEventListener("mouseleave", hide);
+    });
+});
+</script>
+{% endblock %}
