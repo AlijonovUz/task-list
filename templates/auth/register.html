@@ -62,12 +62,19 @@ document.addEventListener("DOMContentLoaded", function () {
     passwordInputs.forEach(input => {
         const wrapper = document.createElement("div");
         wrapper.className = "password-wrapper";
+        wrapper.style.position = "relative"; 
 
         input.parentNode.insertBefore(wrapper, input);
         wrapper.appendChild(input);
 
         const icon = document.createElement("i");
         icon.className = "fas fa-eye";
+        icon.style.position = "absolute";
+        icon.style.right = "10px";
+        icon.style.top = "50%";
+        icon.style.transform = "translateY(-50%)";
+        icon.style.cursor = "pointer";
+        icon.style.display = "none";
         wrapper.appendChild(icon);
 
         const showPassword = () => {
@@ -86,6 +93,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         icon.addEventListener("touchstart", showPassword);
         icon.addEventListener("touchend", hidePassword);
+
+        input.addEventListener("input", () => {
+            if (input.value.length > 0) {
+                icon.style.display = "block";
+            } else {
+                icon.style.display = "none";
+            }
+        });
     });
 });
 </script>
