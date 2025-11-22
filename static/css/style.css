@@ -30,6 +30,16 @@ body {
   color: #14532d;
 }
 
+.badge-gradient-danger {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+  color: #7f1d1d;
+}
+
+.badge-gradient-late {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: #78350f;
+}
+
 /* Task Icons */
 .task-icons a {
   transition: color 0.2s, transform 0.2s;

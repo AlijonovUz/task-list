@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^u#%!frudayg)tdfpu^7)lyjz&b+q3b(-yq)x&h_$x#or$4msw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "task-list.wwiw.qzz.io",
+    "www.task-list.wwiw.qzz.io",
+]
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
