@@ -70,18 +70,22 @@ document.addEventListener("DOMContentLoaded", function () {
         icon.className = "fas fa-eye";
         wrapper.appendChild(icon);
 
-        icon.addEventListener("mousedown", () => {
+        const showPassword = () => {
             input.type = "text";
             icon.classList.replace("fa-eye", "fa-eye-slash");
-        });
+        };
 
-        const hide = () => {
+        const hidePassword = () => {
             input.type = "password";
             icon.classList.replace("fa-eye-slash", "fa-eye");
         };
 
-        icon.addEventListener("mouseup", hide);
-        icon.addEventListener("mouseleave", hide);
+        icon.addEventListener("mousedown", showPassword);
+        icon.addEventListener("mouseup", hidePassword);
+        icon.addEventListener("mouseleave", hidePassword);
+
+        icon.addEventListener("touchstart", showPassword);
+        icon.addEventListener("touchend", hidePassword);
     });
 });
 </script>
