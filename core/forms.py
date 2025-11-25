@@ -70,3 +70,5 @@ class TaskForm(forms.ModelForm):
         self.fields['description'].required = False
         self.fields['deadline'].required = False
         self.fields['deadline'].input_formats = ['%Y-%m-%dT%H:%M']
+
+

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Emailingizni tekshiring{% endblock %}
+
+{% block body_class %}
+d-flex align-items-center justify-content-center py-5 bg-light
+{% endblock %}
+
+{% block main %}
+<div class="card w-100 p-4" style="max-width: 400px; border-radius: 0.75rem;">
+    <h1 class="text-center mb-4 fw-bold">Emailingizni tekshiring</h1>
+    <p class="text-center text-muted mb-4">
+        Ro‘yxatdan o‘tganingiz uchun rahmat! <br>
+        Iltimos, emailingizni tekshiring va tasdiqlash linkiga bosing.
+    </p>
+
+    <div class="d-flex flex-column gap-2 mt-2">
+        <a href="{% url 'login' %}"
+           class="btn btn-secondary btn-custom d-flex align-items-center justify-content-center gap-2 rounded-md">
+            <i class="fas fa-sign-in-alt"></i> Kirish sahifasiga qaytish
+        </a>
+        <a href="{% url 'resend-verification-email' %}"
+           class="btn btn-success btn-custom d-flex align-items-center justify-content-center gap-2 rounded-md">
+            <i class="fas fa-envelope"></i> Tasdiqlash emailini qayta yuborish
+        </a>
+    </div>
+</div>
+{% endblock %}

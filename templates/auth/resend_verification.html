@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load form_tags %}
+
+{% block title %}Tasdiqlash emailini qayta yuborish{% endblock %}
+
+{% block body_class %}
+d-flex align-items-center justify-content-center py-5 bg-light
+{% endblock %}
+
+{% block main %}
+<div class="card w-100 p-4" style="max-width: 400px; border-radius: 0.75rem;">
+    <h1 class="text-center mb-4 fw-bold">Tasdiqlash</h1>
+    <p class="text-center text-muted mb-4">
+        Iltimos, elektron pochtangizni kiriting va biz tasdiqlash linkini qayta yuboramiz.
+    </p>
+
+    <form method="POST" class="d-flex flex-column gap-3">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div>
+            {{ form.email.label_tag }}
+            {{ form.email|is_invalid:"is-invalid" }}
+            {% for error in form.email.errors %}
+            <p class="invalid-feedback d-block">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Tugmalar register sahifadagidek -->
+        <div class="d-flex flex-column gap-2 mt-2">
+            <button type="submit"
+                    class="btn btn-success btn-custom d-flex align-items-center justify-content-center gap-2 rounded-md">
+                <i class="fas fa-envelope"></i> Qayta yuborish
+            </button>
+            <a href="{% url 'login' %}"
+               class="btn btn-secondary btn-custom d-flex align-items-center justify-content-center gap-2 rounded-md">
+                <i class="fas fa-sign-in-alt"></i> Kirish
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
