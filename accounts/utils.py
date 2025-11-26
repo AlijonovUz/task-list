@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 def send_verification_email(user, request):
-    project_name = "Vazifalar ro'yxati"
+    project_name = "BY ALIK"
     token = default_token_generator.make_token(user)
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     verify_url = request.build_absolute_uri(
@@ -16,7 +16,7 @@ def send_verification_email(user, request):
 
     subject = "Elektron pochtangizni tasdiqlang!"
     message = (
-        f"Assalomu alaykum, {user.username}!\n\n"
+        f"Assalomu alaykum, foydalanuvchi!\n\n"
         f"Siz bizning platformamizda ro'yxatdan o'tdingiz.\n"
         f"Ro'yxatdan o'tishni yakunlash va hisobingizni faollashtirish uchun quyidagi havolani bosing:\n\n"
         f"{verify_url}\n\n"

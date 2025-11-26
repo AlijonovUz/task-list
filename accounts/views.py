@@ -32,6 +32,8 @@ class RegisterCreateView(LoginNoRequiredMixin, CreateView):
         user.is_active = False
         user.save()
 
+        send_verification_email(user, self.request)
+
         messages.success(
             self.request,
             "Ro'yxatdan o'tdingiz. Iltimos, elektron pochtangizni tasdiqlang!",
@@ -59,7 +61,7 @@ class LogoutView(LoginRequiredMixin, View):
         return redirect("home")
 
 
-class VerifyEmailView(View):
+class VerifyEmailView(LoginNoRequiredMixin, View):
     def get(self, request, uidb64, token):
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
@@ -76,8 +78,6 @@ class VerifyEmailView(View):
             user.is_active = True
             user.save()
 
-            send_verification_email(user, request)
-
             messages.success(request, "Elektron pochta muvaffaqiyatli tasdiqlandi!")
             return redirect("login")
 
@@ -85,7 +85,7 @@ class VerifyEmailView(View):
         return redirect("check-email")
 
 
-class ResendVerificationEmailView(View):
+class ResendVerificationEmailView(LoginNoRequiredMixin, View):
     def get(self, request):
         form = ResendVerificationEmailForm()
         return render(request, "auth/resend_verification.html", {"form": form})
@@ -107,5 +107,5 @@ class ResendVerificationEmailView(View):
         return render(request, "auth/resend_verification.html", {"form": form})
 
 
-class CheckEmailView(TemplateView):
+class CheckEmailView(LoginNoRequiredMixin, TemplateView):
     template_name = "auth/check-email.html"

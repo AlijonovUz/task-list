@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-^u#%!frudayg)tdfpu^7)lyjz&b+q3b(-yq)x&h_$x#or$4msw"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "task-list.wwiw.qzz.io",
@@ -63,7 +64,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "task.urls"
 
-LOGIN_URL = "/auth/login/"
+LOGIN_URL = reverse_lazy('login')
 
 TEMPLATES = [
     {
@@ -90,13 +91,14 @@ WSGI_APPLICATION = "task.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "tasklist",
-        "USER": "tasklist_usr",
-        "PASSWORD": "wJgLk0eMfkc~-T{x",
+        "NAME": "task_list_ww",
+        "USER": "task_list_ww",
+        "PASSWORD": "3Kbb+$x)2P2lB*+)",
         "HOST": "localhost",
         "PORT": "5432",
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -147,9 +149,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "api.alijonov.uz@gmail.com"
-EMAIL_HOST_PASSWORD = "hsuw hbkf epmk cbmb"
-DEFAULT_FROM_EMAIL = f"Universal API <{EMAIL_HOST_USER}>"
+EMAIL_HOST_USER = "vazifalarroyxati@gmail.com"
+EMAIL_HOST_PASSWORD = "affz hiaa wlms xcle"
+DEFAULT_FROM_EMAIL = f"Vazifalar ro'yxati <{EMAIL_HOST_USER}>"
 
 # email verification and password reset timeout
 PASSWORD_RESET_TIMEOUT = 300
